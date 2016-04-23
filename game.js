@@ -13,9 +13,8 @@ var Game = {
           document.body.insertBefore(Game.canvas, document.body.childNodes[0]);
 
           // Player object
-          Game.player = new Sprite("player.png", 10, 10);
-          Game.player.speed = 5;
-          Game.player.keys = {};
+          Game.player = new Player("player.png", 10, 10);
+          Game.enemy = new Enemy("enemy.png", 50, 50);
 
           // Start game loop
           Game.draw();
@@ -32,20 +31,10 @@ var Game = {
     draw : function() {
       Game.ctx.clearRect(0, 0, Game.canvas.width, Game.canvas.height);
 
-      if (65 in Game.player.keys) {
-          Game.player.x-=Game.player.speed;
-      }
-      if (68 in Game.player.keys) {
-          Game.player.x+=Game.player.speed;
-      }
-      if (87 in Game.player.keys) {
-          Game.player.y-=Game.player.speed;
-      }
-      if (83 in Game.player.keys) {
-          Game.player.y+=Game.player.speed;
-      }
-
+      Game.player.update();
       Game.player.draw(Game.ctx);
+      Game.enemy.update();
+      Game.enemy.draw(Game.ctx);
 
       window.requestAnimationFrame(Game.draw);
     }
