@@ -5,6 +5,13 @@ class Player extends Sprite {
         super(img, x, y);
         this.speed = 5;
         this.keys = {};
+        this.hp = 100;
+    }
+
+    draw(ctx) {
+        Sprite.prototype.draw.call(this, ctx);
+        ctx.fillStyle = "lime";
+        ctx.fillRect(50, 50, this.hp*5, 30);
     }
 
     update() {
