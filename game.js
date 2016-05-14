@@ -7,6 +7,9 @@ var Game = {
           // Run keyUp function when a key is released
           window.onkeyup = Game.keyUp;
 
+          // Shoot when mouse is clicked
+          window.onmouseup = Game.mouseClick;
+
           // Create canvas and size to window dimensions
           Game.canvas.width = window.innerWidth;
           Game.canvas.height = window.innerHeight;
@@ -27,6 +30,10 @@ var Game = {
     // Stop the player based on which key is released
     keyUp : function(e) {
         delete Game.entities.player.keys[e.keyCode];
+    },
+    // Mouse handling
+    mouseClick : function(e) {
+        Game.entities.player.shoot(e.clientX, e.clientY);
     },
     // Game loop
     draw : function() {
